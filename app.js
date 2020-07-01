@@ -1,16 +1,9 @@
- console.log('hello world')
- setTimeout(function(){
-     console.log('printing after 4 seconds')
- },3000)
+var http = require("http");
 
-
- time=0;
- var timer=setInterval(function(){
-     time +=1;
-     console.log(time,'seconds have passed')
-     if(time>=10)
-     clearInterval(timer)
- },1000)
- 
-console.log(__dirname)
-console.log(__filename)
+server = http.createServer(function (req, res) {
+  console.log("user has made request to", req.url);
+  res.writeHead(200, { ContentType: "text/plain" });
+  res.end("hello buddy");
+});
+server.listen(3000, "localhost");
+console.log("server is listening to port 3000");
