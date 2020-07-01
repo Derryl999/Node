@@ -1,4 +1,29 @@
-var col=require('./collection')
-console.log(col.counter([1,2,3,4,5,6,7,8,9,10]))
-console.log(col.add(10,20))
-console.log(col.add(col.pi,5))
+var events = require("events");
+var util = require("util");
+
+/*var myEmitter = new events.EventEmitter();
+myEmitter.on("someEvent", function (msg) {
+  console.log(msg);
+});
+
+myEmitter.emit('someEvent','someEvent has emitted') */
+
+var Person = function (name) {
+  this.name = name;
+};
+
+util.inherits(Person, events.EventEmitter);
+
+var james = new Person("james");
+var july = new Person("july");
+var alice = new Person("alice");
+
+var people = [james, july, alice];
+
+people.forEach(function (person) {
+  person.on("speak", function (msg) {
+    console.log(person.name + " said " + msg);
+  });
+});
+james.emit("speak", "hello");
+july.emit("speak", "hey guys");
