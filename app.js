@@ -1,16 +1,11 @@
- console.log('hello world')
- setTimeout(function(){
-     console.log('printing after 4 seconds')
- },3000)
+var http = require("http");
+var fs = require("fs");
 
+var myReadStream = fs.createReadStream(__dirname + "/test.txt", "utf8");
+var myWriteStream = fs.createWriteStream(__dirname + "/writeMe.txt");
 
- time=0;
- var timer=setInterval(function(){
-     time +=1;
-     console.log(time,'seconds have passed')
-     if(time>=10)
-     clearInterval(timer)
- },1000)
- 
-console.log(__dirname)
-console.log(__filename)
+myReadStream.on("data", function (chunk) {
+  console.log("**************new chunk received******************");
+  // console.log(chunk);
+  myWriteStream.write(chunk);
+});
