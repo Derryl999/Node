@@ -5,3 +5,13 @@ var myReadStream = fs.createReadStream(__dirname + "/test.txt", "utf8");
 var myWriteStream = fs.createWriteStream(__dirname + "/writeMe.txt");
 
 myReadStream.pipe(myWriteStream)
+
+server = http.createServer(function (req, res) {
+  console.log("user has made request to", req.url);
+  res.writeHead(200, { ContentType: "text/plain" });
+  res.end(function(){
+    myReadStream.
+  });
+});
+server.listen(3000, "localhost");
+console.log("server is listening to port 3000");
