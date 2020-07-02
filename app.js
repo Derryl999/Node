@@ -3,9 +3,9 @@ var fs = require("fs");
 
 server = http.createServer(function (req, res) {
   console.log("user has made request to", req.url);
-  res.writeHead(200, { ContentType: "text/html" });
-  var myReadStream = fs.createReadStream(__dirname + "/index.html", "utf8");
-  myReadStream.pipe(res);
+  res.writeHead(200, { ContentType: "application/json" });
+  var myObj = { name: "derryl", age: 21, status: "student" };
+  res.end(JSON.stringify(myObj));
 });
 
 server.listen(3000, "localhost");
