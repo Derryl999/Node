@@ -10,7 +10,8 @@ app.get("/", function (req, res) {
 });
 
 app.get("/contact", function (req, res) {
-  res.render('contact.ejs')
+  console.log(req.query)
+  res.render('contact.ejs',{qs:req.query})
   // res.sendFile(__dirname + "/contact.html");
 });
 app.get("/profile/:name", function (req, res) {
